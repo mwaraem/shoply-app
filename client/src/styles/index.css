@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { @apply scroll-smooth; }
+  body { @apply bg-white text-slate-800; }
+}
+
+@layer components {
+  .btn { @apply inline-flex items-center rounded-xl px-4 py-2 font-medium shadow-soft hover:shadow focus:outline-none focus:ring; }
+  .btn-primary { @apply btn bg-brand text-white hover:bg-brand-600; }
+  .card { @apply rounded-2xl border border-slate-100 bg-white p-4 shadow-soft; }
+  .input { @apply w-full rounded-xl border border-slate-200 px-3 py-2 focus:border-brand focus:ring focus:ring-brand/20; }
+  .badge { @apply inline-block rounded-full bg-slate-100 px-2 py-0.5 text-xs; }
+}
