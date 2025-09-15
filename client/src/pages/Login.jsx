@@ -15,7 +15,7 @@ export default function Login() {
         e.preventDefault();
         setError('');
         try {
-            const { data } = await api.post('/auth/login', { email, passowrd });
+            const { data } = await api.post('/auth/login', { email, password });
             dispatch(setUser(data.user));
             navigate('/'); // redirect to home page after login
         } catch (err) {

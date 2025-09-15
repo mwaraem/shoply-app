@@ -16,7 +16,7 @@ export default function Register() {
         e.preventDefault();
         setError('');
         try {
-            const { data } = await api.post('/auth/register', { name, emaail, password });
+            const { data } = await api.post('/auth/register', { name, email, password });
             dispatch(setUser(data.user));
             navigate('/');
         } catch (err) {

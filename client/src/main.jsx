@@ -10,6 +10,7 @@ import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Checkout from './pages/Checkout';
 import Register from './pages/Register'
+import { fetchMe } from "./features/auth/userSlice";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,8 @@ const router = createBrowserRouter([
     ]
   },
 ]);
+
+store.dispatch(fetchMe());
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
