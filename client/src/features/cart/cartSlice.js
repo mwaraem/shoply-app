@@ -15,14 +15,14 @@ const slice = createSlice({
             s.items = s.items.filter(i => i.variantSku !== payload);
             s.subtotal = s.items.reduce((a, i) => a + i.qty * i.price, 0);
         },
-        clearCart: () => initial,
         updateQuantity: (s, { payload }) => {
             const idx = s.items.findIndex(i => i._id === payload.id);
             if (idx > -1) {
                 s.items[idx].qty = payload.qty;
                 s.subtotal = s.items.reduce((a, i) => a + i.qty * i.price, 0);
             }
-        }
+        },
+        clearCart: () => initial
     }
 });
 export const { addToCart, removeFromCart, clearCart, updateQuantity } = slice.actions;
