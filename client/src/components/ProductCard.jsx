@@ -20,21 +20,17 @@ export default function ProductCard({ product, onAdd }) {
 
     const makePayload = () => ({
         _id: id,
-        title: product.title ?? product.name ?? "Untitled",
-        price: Number(product.price ?? product.unit_price ?? 0),
-        image: product.image ?? (product.images && product.images[0]) ?? "",
-        qty: 1,
-        variantSku: product.variantSku ?? null,
+        title: product.title,
+        price: product.price,
+        image: product.image,
+        qty: 1
     });
 
     const handleAdd = (e) => {
         // avoid navigation or parent handlers stealing the click
-        if (e) {
-            e.stopPropagation();
-            if (typeof e.preventDefault === "function") e.preventDefault();
-        }
-
+        if (e) { e.stopPropagation(); e.preventDefault(); }
         const payload = makePayload();
+        dispatch(addToCart(payload));
 
         // Prefer parent's handler if provided; else dispatch directly
         if (typeof onAdd === "function") {
