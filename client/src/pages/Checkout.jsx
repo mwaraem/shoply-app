@@ -1,20 +1,23 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { api } from '../lib/api';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { clearCart } from '../features/cart/cartSlice';
 
-const stripePromise = loadStripe('pk_test_51N4Y2KJH3b0qQ6zYpX0mX4X6k3JZp1g7x8y9z0a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6q7r8s9t0u1v2w3x4y5z');
+const stripePromise = loadStripe('pk_test_51SAoJgR8gITigo6w6JjwdIXyGCQ2gG4vV6Q3MPsRRV0UcGbi5lyuPdlHE5zKYGY4dsG3tQKdwYcheBrHhHJ0qsLF00R65rYt8M');
 
 function CheckoutForm() {
-    const stripe = useStripe(); const elements = useElements();
+    const stripe = useStripe();
+    const elements = useElements();
     const cart = useSelector(s => s.cart);
     const d = useDispatch();
 
     const pay = async () => {
-        const shipping = { name: "John", address: "1 Main", city: "NBO", country: "KE", zip: "00100", phone: "+254..." };
-        const { data } = await api.post('/orders/checkout', { items: cart.items, shipping });
-        const { error } = await stripe.confirmPayment({ elements, confirmParams: { return_url: window.location.origin + '/?paid=true' } });
+        const { error } = await stripe.confirmPayment({
+            elements,
+            confirmParams: { return_url: window.location.origin + '/?paid=true' }
+        });
         if (!error) d(clearCart());
         else alert(error.message);
     };
@@ -28,12 +31,31 @@ function CheckoutForm() {
 }
 
 export default function Checkout() {
+    const cart = useSelector(s => s.cart);
+    const [clientSecret, setClientSecret] = useState("");
+
+    useEffect(() => {
+        const fetchClientSecret = async () => {
+            const shipping = { name: "John", address: "1 Main", city: "NBO", country: "KE", zip: "00100", phone: "+254..." };
+            const { data } = await api.post('/checkout', { items: cart.items, shipping });
+            setClientSecret(data.clientSecret);
+        };
+        fetchClientSecret();
+    }, [cart.items]);
+
+    const options = {
+        clientSecret,
+        appearance: {},
+    };
+
     return (
         <div className='mx-auto max-w-3xl px-4 py-8'>
             <h1 className='text-2xl font-bold mb-4'>Checkout</h1>
-            <Elements stripe={stripePromise} options={{ appearance: {} }}>
-                <CheckoutForm />
-            </Elements>
+            {clientSecret && (
+                <Elements stripe={stripePromise} options={options}>
+                    <CheckoutForm />
+                </Elements>
+            )}
         </div>
     );
-};
+}

@@ -6,6 +6,7 @@ import ProductGrid from "../components/ProductGrid";
 import PromoStrip from "../components/PromoStrip";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
+import ProductCard from "../components/ProductCard";
 
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
         <>
             <Hero />
             <FeaturedCategories />
+            <ProductCard />
             <ProductGrid limit={9} />
             <PromoStrip />
             <Newsletter />

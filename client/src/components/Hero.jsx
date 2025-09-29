@@ -5,7 +5,7 @@ import FeaturedProduct from '../assets/hero-product.jpg';
 
 export default function Hero() {
     return (
-        <section className="relative bg-[url('../assets/hero.jpg')] bg-cover bg-center min-h-[520px] rounded-xl overflow-hidden">
+        <section className="relative bg-[url('../assets/hero.jpg')] bg-cover bg-center min-h-[220px] rounded-xl overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/25 to-transparent"></div>
 
             <div className="relative z-10 max-w-6xl mx-auto px-6 py-28 flex items-center justify-between">
