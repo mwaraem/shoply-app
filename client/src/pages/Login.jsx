@@ -16,7 +16,8 @@ export default function Login() {
         setError('');
         try {
             const { data } = await api.post('/auth/login', { email, password });
-            dispatch(setUser(data.user));
+            console.log('Login response:', data);
+            dispatch(setUser(data));
             navigate('/'); // redirect to home page after login
         } catch (err) {
             setError(err.response?.data?.message || 'Login failed');
