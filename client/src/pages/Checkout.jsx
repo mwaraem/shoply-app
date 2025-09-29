@@ -5,7 +5,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements, PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { clearCart } from '../features/cart/cartSlice';
 
-const stripePromise = loadStripe(process.env.STRIPE_SECRET_KEY);
+const stripePromise = loadStripe('pk_test_51SAoJgR8gITigo6w6JjwdIXyGCQ2gG4vV6Q3MPsRRV0UcGbi5lyuPdlHE5zKYGY4dsG3tQKdwYcheBrHhHJ0qsLF00R65rYt8M');
 
 function CheckoutForm() {
     const stripe = useStripe();
