@@ -36,9 +36,17 @@ export default function Checkout() {
 
     useEffect(() => {
         const fetchClientSecret = async () => {
-            const shipping = { name: "John", address: "1 Main", city: "NBO", country: "KE", zip: "00100", phone: "+254..." };
-            const { data } = await api.post('/checkout', { items: cart.items, shipping });
-            setClientSecret(data.clientSecret);
+            try {
+                const shipping = { name: "John", address: "1 Main", city: "NBO", country: "KE", zip: "00100", phone: "+254..." };
+                const response = await api.post('/checkout', { items: cart.items, shipping });
+                if (response && response.data && response.data.clientSecret) {
+                    setClientSecret(response.data.clientSecret);
+                } else {
+                    alert("Failed to get payment intent. Please check your login and cart.");
+                }
+            } catch (err) {
+                alert("Checkout error: " + (err.response?.data?.error || err.message));
+            }
         };
         fetchClientSecret();
     }, [cart.items]);
