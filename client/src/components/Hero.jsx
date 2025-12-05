@@ -1,30 +1,59 @@
-import React from 'react'
-import HeroImage from '../assets/hero.jpg';
-import ProductCard from './ProductCard';
-import FeaturedProduct from '../assets/hero-product.jpg';
+import React from 'react';
+import heroImg from '../assets/hero.png';
+
 
 export default function Hero() {
-    return (
-        <section className="relative bg-[url('../assets/hero.jpg')] bg-cover bg-center min-h-[220px] rounded-xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/25 to-transparent"></div>
+  return (
+    <section className="max-w-full mx-auto min-h-[520px] bg-[#f5f5f5] dark:bg-app-dark shadow-soft overflow-hidden">
+      
+        {/* Thin top bar */}
+        <div className="bg-black text-[10px] sm:text-xs text-white px-6 py-2 flex flex-wrap gap-4 justify-center sm:justify-between tracking-[0.15em] uppercase">
+          <span>Free delivery in Asia from ₱5670</span>
+          <span className="hidden sm:inline">New arrivals · Limited edition pieces</span>
+        </div>
 
-            <div className="relative z-10 max-w-6xl mx-auto px-6 py-28 flex items-center justify-between">
-                <div className="max-w-xl text-white">
-                    <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight">The Biggest <span className="text-brand">Sale</span></h1>
-                    <p className="mt-4 text-lg opacity-90">Special offers on trending items. Limited time only.</p>
-                    <div className="mt-6 flex gap-3">
-                        <a href="featured" className="inline-flex items-center px-6 py-3 bg-brand hover:bg-brand-dark text-white rounded-lg font-medium shadow-soft">
-                            Shop Now
-                        </a>
-                        <a href="featured" className="inline-flex items-center px-5 py-3 border border-white/30 rounded-lg text-white/90">Explore</a>
-                    </div>
-                </div>
+        {/* Main hero content */}
+        <div className="px-6 sm:px-10 lg:px-14 py-10 sm:py-12 lg:py-14 grid gap-10 lg:grid-cols-2 items-center">
+          {/* Left: text */}
+          <div>
+            <p className="text-[11px] tracking-[0.3em] uppercase text-gray-500 mb-5">
+              Shoply
+            </p>
 
-                <div className="hidden lg:block w-[320px] rounded-lg overflow-hidden shadow-soft">
-                    {/* small static hero product card for visual interest */}
-                    <img src={FeaturedProduct} alt="Featured product" className="w-full h-full object-cover" />
-                </div>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-[3.4rem] leading-tight text-gray-900">
+              Find your Taste
+              <br />
+              in Timeless Elegance
+            </h1>
+
+            <p className="mt-6 text-sm sm:text-base text-gray-600 max-w-xl">
+              Step into a world where fashion meets art. Experience unparalleled luxury and
+              sophisticated style with our exclusive collections. Discover the perfect blend of
+              timeless elegance and contemporary flair.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button className="px-6 py-3 text-sm font-medium bg-black text-white rounded-none border border-black hover:bg-gray-900 transition-colors">
+                Shop the Collection
+              </button>
+              <button className="px-6 py-3 text-sm font-medium border border-gray-400 text-gray-800 bg-transparent hover:bg-gray-100 transition-colors">
+                Discover More
+              </button>
             </div>
-        </section>
-    );
-};
+          </div>
+
+          {/* Right: model image, aligned at bottom-right */}
+          <div className="flex items-end justify-center lg:justify-end">
+            <div className="h-80 sm:h-96 lg:h-[520px]">
+              <img
+                src={heroImg}
+                alt="Timeless fashion"
+                className="h-full w-auto object-cover object-center"
+              />
+            </div>
+          </div>
+        
+      </div>
+    </section>
+  );
+}

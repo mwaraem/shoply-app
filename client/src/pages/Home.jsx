@@ -13,9 +13,9 @@ export default function Home() {
     return (
         <>
             <Hero />
-            <FeaturedCategories />
+            {/* <FeaturedCategories /> */}
             <ProductCard />
-            <ProductGrid limit={9} />
+            <ProductGrid />
             <PromoStrip />
             <Newsletter />
             <Footer />

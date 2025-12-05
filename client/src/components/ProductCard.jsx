@@ -49,14 +49,14 @@ export default function ProductCard({ product, onAdd }) {
     };
 
     return (
-        <article className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden relative">
+        <article className="bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden relative dark:bg-gray-800 dark:text-gray-100 dark:border-gray-800">
             {/* Link only around image/title so Add button is not inside the link */}
             <Link to={`/products/${id}`} className="block">
                 <img
                     loading="lazy"
                     src={product.image ?? (product.images && product.images[0])}
                     alt={product.title ?? product.name ?? "Product image"}
-                    className="w-full h-48 object-contain bg-slate-50 p-4"
+                    className="w-full h-48 object-contain bg-gray-100 dark:bg-gray-700 p-4"
                 />
             </Link>
 
@@ -72,7 +72,7 @@ export default function ProductCard({ product, onAdd }) {
                         type="button"
                         onClick={handleAdd}
                         aria-label={`Add ${product.title ?? "product"} to cart`}
-                        className="px-3 py-1 bg-brand text-white rounded-md text-sm hover:bg-brand-dark transition"
+                        className="px-3 py-1 bg-brand text-white text-sm hover:bg-brand-dark transition"
                         style={{ pointerEvents: "auto", position: "relative", zIndex: 20 }} // temporary safety
                     >
                         Add

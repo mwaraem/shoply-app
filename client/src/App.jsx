@@ -7,7 +7,7 @@ import FeaturedCategories from "./components/FeaturedCategories";
 import ProductGrid from "./components/ProductGrid";
 
 function App() {
-  
+
   return (
     <>
       <Navbar />

@@ -7,7 +7,7 @@ export default function Newsletter() {
 
     return (
         <section className="max-w-6xl mx-auto px-6 mt-12">
-            <div className="bg-slate-50 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="bg-slate-50 p-6 flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
                     <h4 className="text-lg font-semibold">Subscribe to our newsletter</h4>
                     <p className="text-sm text-slate-600">Get 10% off your first order.</p>

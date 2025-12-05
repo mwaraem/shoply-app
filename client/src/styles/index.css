@@ -2,15 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global typography + colors */
 @layer base {
-  html { @apply scroll-smooth; }
-  body { @apply bg-white text-slate-800; }
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply font-sans bg-white text-slate-800 dark:text-slate-100;
+  }
+
+  .dark body {
+    @apply bg-app-dark;
+  }
+
+  /* Headings use display (Playfair Display) + main color */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-slate-900 dark:text-slate-50;
+  }
+
+  /* Paragraphs and normal text */
+  p, li {
+    @apply text-slate-700 dark:text-slate-200;
+  }
+
+  a {
+    @apply text-slate-900 dark:text-slate-50;
+  }
 }
 
 @layer components {
-  .btn { @apply inline-flex items-center rounded-xl px-4 py-2 font-medium shadow-soft hover:shadow focus:outline-none focus:ring; }
-  .btn-primary { @apply btn bg-brand text-white hover:bg-brand-600; }
-  .card { @apply rounded-2xl border border-slate-100 bg-white p-4 shadow-soft; }
-  .input { @apply w-full rounded-xl border border-slate-200 px-3 py-2 focus:border-brand focus:ring focus:ring-brand/20; }
-  .badge { @apply inline-block rounded-full bg-slate-100 px-2 py-0.5 text-xs; }
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full px-5 py-2.5
+    text-sm font-medium font-sans
+    transition-colors shadow-soft
+    focus:outline-none focus:ring focus:ring-brand/30;
+  }
+
+  .btn-primary {
+    @apply btn bg-black text-white border border-black hover:bg-gray-900;
+  }
+
+  .btn-outline {
+    @apply btn border border-slate-400 text-slate-800 bg-transparent
+    hover:bg-slate-100;
+  }
 }

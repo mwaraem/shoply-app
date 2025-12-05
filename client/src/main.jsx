@@ -11,6 +11,15 @@ import Login from './pages/Login';
 import Checkout from './pages/Checkout';
 import Register from './pages/Register'
 import { fetchMe } from "./features/auth/userSlice";
+import RequireAdmin from './components/RequireAdmin';
+import AdminDashboard from './admin/AdminDashboard';
+import AdminProducts from './admin/AdminProducts';
+import AdminOrders from './admin/AdminOrders';
+import AdminUsers from './admin/AdminUsers';
+import { ThemeProvider } from './context/ThemeContext';
+import AdminLayout from './admin/AdminLayout';
+
+store.dispatch(fetchMe());
 
 const router = createBrowserRouter([
   {
@@ -20,13 +29,25 @@ const router = createBrowserRouter([
       { path: 'cart', element: <Cart /> },
       { path: 'checkout', element: <Checkout /> },
       { path: 'login', element: <Login /> },
-      { path: 'register', element: <Register /> }
-    ]
+      { path: 'register', element: <Register /> },
+      {
+        element: <RequireAdmin />,
+        children: [
+          { path: 'admin', element: <AdminLayout /> },
+          { path: 'admin/products', element: <AdminProducts /> },
+          { path: 'admin/orders', element: <AdminOrders /> },
+          { path: 'admin/users', element: <AdminUsers /> },
+        ],
+      },
+    ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>
+  <ThemeProvider>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </ThemeProvider>
 );
+
