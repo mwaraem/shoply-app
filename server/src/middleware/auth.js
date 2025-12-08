@@ -23,9 +23,9 @@ export const requireAdmin = (_req, res, next) => {
 export const issueToken = (res, user) => {
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES });
     res.cookie("token", token, {
-        httpOnly: true,
+        httpOnly: false,
         sameSite: "lax",
-        secure: process.env.NODE_ENV === 'production', // set to true in production
+        secure: true, // set to true in production
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         path: '/'
     });
