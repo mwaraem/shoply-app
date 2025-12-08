@@ -30,13 +30,19 @@ const router = createBrowserRouter([
       { path: 'checkout', element: <Checkout /> },
       { path: 'login', element: <Login /> },
       { path: 'register', element: <Register /> },
+    ],
+  },
+  {
+    path: '/admin',
+    element: <RequireAdmin />,
+    children: [
       {
-        element: <RequireAdmin />,
+        element: <AdminLayout />,
         children: [
-          { path: 'admin', element: <AdminLayout /> },
-          { path: 'admin/products', element: <AdminProducts /> },
-          { path: 'admin/orders', element: <AdminOrders /> },
-          { path: 'admin/users', element: <AdminUsers /> },
+          { index: true, element: <AdminDashboard /> },
+          { path: 'products', element: <AdminProducts /> },
+          { path: 'orders', element: <AdminOrders /> },
+          { path: 'users', element: <AdminUsers /> },
         ],
       },
     ],

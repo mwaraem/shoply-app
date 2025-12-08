@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
 export default function AdminLayout() {
@@ -104,5 +104,5 @@ export default function AdminLayout() {
                 </main>
             </div>
         </div>
-    )
+    );
 }
